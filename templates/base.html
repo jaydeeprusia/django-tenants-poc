@@ -2,12 +2,13 @@
 {% load django_htmx %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Django Template">
-    <title>Tenants POC</title>
+    <title>{% if request.tenant %}{{ request.tenant.name }}{% else %}Tenants POC{% endif %}</title>
     <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <script src="https://unpkg.com/htmx.org@2.0.2"></script>
@@ -105,8 +106,9 @@
         .alert-danger { @apply bg-red-500 }
     </style>
 </head>
+
 <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' class="{% block class %}{% endblock %}">
-	
+
     {% include 'includes/messages.html' %}
 
     {% include 'includes/header.html' %}
@@ -117,4 +119,5 @@
     {% block javascript %}{% endblock %}
 
 </body>
+
 </html>
