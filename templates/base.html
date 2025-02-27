@@ -111,7 +111,8 @@
 
     {% include 'includes/messages.html' %}
 
-    {% include 'includes/header.html' %}
+    {% load header %}
+    {% header_view request %}
 
     {% block layout %}
     {% endblock %}

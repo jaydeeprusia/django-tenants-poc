@@ -46,6 +46,7 @@ SHARED_APPS = [
     'django.contrib.sites',
     'allauth',
     'allauth.account',
+    'colorfield',
     'home',
     'users'
 ]
@@ -176,6 +177,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+MULTITENANT_RELATIVE_MEDIA_ROOT = 'tenants/%s'
+
+STORAGES = {
+    'default': {
+        'BACKEND': 'home.storage.CustomSchemaStorage',
+    },
+    'staticfiles': {
+        'BACKEND': 'django.contrib.staticfiles.storage.StaticFilesStorage',
+    },
+}
 
 LOGIN_REDIRECT_URL = '/'
 
